@@ -12,7 +12,7 @@
 composer
 
 ~~~bash
-composer require "youduphp/laravel-youdu:2.*"
+composer require "youduphp/laravel-youdu:^1.0"
 ~~~
 
 publish
