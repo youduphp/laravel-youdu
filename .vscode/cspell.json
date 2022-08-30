@@ -1,0 +1,41 @@
+{
+    "version": "0.1",
+    "language": "en",
+    "words": [
+        "aggs",
+        "agreen",
+        "Arrayable",
+        "buin",
+        "Cacheable",
+        "depts",
+        "descr",
+        "Facetory",
+        "friendsofhyperf",
+        "Huangdijia",
+        "hyperspeed",
+        "idcard",
+        "Laravel",
+        "microservice",
+        "notbetween",
+        "notifiables",
+        "notificable",
+        "postable",
+        "readed",
+        "refreshable",
+        "statu",
+        "Storager",
+        "storagers",
+        "Swoole",
+        "Testbench",
+        "UNEXTRACT",
+        "Unrefreshs",
+        "UNSHELVE",
+        "usetime",
+        "Yahc",
+        "Youdu",
+        "youduphp"
+    ],
+    "flagWords": [
+        "hte"
+    ]
+}
