@@ -35,19 +35,16 @@ class Notification extends BaseNotification implements ShouldQueue
      * Get the notification's delivery channels.
      *
      * @param mixed $notifiable
-     * @return array
      */
-    public function via($notifiable)
+    public function via($notifiable): array
     {
         return ['youdu'];
     }
 
     /**
      * Get the notification's delivery youdu app.
-     *
-     * @return string
      */
-    public function app()
+    public function app(): string
     {
         return $this->app;
     }
@@ -67,9 +64,8 @@ class Notification extends BaseNotification implements ShouldQueue
      * Get the array representation of the notification.
      *
      * @param mixed $notifiable
-     * @return array
      */
-    public function toArray($notifiable)
+    public function toArray($notifiable): array
     {
         return [
             'via' => 'youdu',

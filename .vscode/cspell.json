@@ -21,6 +21,7 @@
         "notifiables",
         "notificable",
         "postable",
+        "Queueable",
         "readed",
         "refreshable",
         "statu",
