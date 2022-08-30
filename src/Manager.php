@@ -28,7 +28,7 @@ class Manager
     /**
      * @var Application[]
      */
-    protected $applications = [];
+    protected array $applications = [];
 
     public function __construct(protected array $config)
     {
