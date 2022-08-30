@@ -14,8 +14,7 @@ return [
 
     'buin' => (int) env('YOUDU_BUIN', 0),
 
-    'default' => 'default',
-
+    'default' => env('YOUDU_DEFAULT_APPLICATION', 'default'),
     'applications' => [
         'default' => [
             'app_id' => env('YOUDU_APP_ID', ''),
