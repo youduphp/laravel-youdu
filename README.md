@@ -11,53 +11,53 @@
 
 composer
 
-~~~bash
+```bash
 composer require "youduphp/laravel-youdu:^1.0"
-~~~
+```
 
 publish
 
-~~~bash
+```bash
 php artisan vendor:publish --provider="YouduPhp\\LaravelYoudu\\YouduServiceProvider"
-~~~
+```
 
 ### Lumen
 
 add `YouduServiceProvider` to `bootstrap/app.php`
 
-~~~php
+```php
 $app->register(Illuminate\Notifications\NotificationServiceProvider::class); // must before YouduServiceProvider
 $app->register(YouduPhp\LaravelYoudu\YouduServiceProvider::class);
-~~~
+```
 
 copy `youdu.php` to `config/`
 
-~~~bash
+```bash
 cp vendor/youduphp/laravel-youdu/config/youdu.php config
-~~~
+```
 
 ## Usage
 
 ### Send text message
 
-~~~php
+```php
 use YouduPhp\LaravelYoudu\Facades\Youdu;
 
-Youdu::send('user1|user2', 'dept1|dept2', 'test'); // send to user and dept
-Youdu::sendToUser('user1|user2', 'test'); // send to user
-Youdu::sendToDept('dept1|dept2', 'test'); // send to dept
-~~~
+Youdu::message()->send('user1|user2', 'dept1|dept2', 'test'); // send to user and dept
+Youdu::message()->sendToUser('user1|user2', 'test'); // send to user
+Youdu::message()->sendToDept('dept1|dept2', 'test'); // send to dept
+```
 
 ### Send other type
 
-~~~php
+```php
 use YouduPhp\LaravelYoudu\Facades\Youdu;
 
-Youdu::send('user1|user2', 'dept1|dept2',new Text('test'));
-Youdu::sendToUser('user1|user2', new Image($mediaId)); // $mediaId 通过 uploadFile 接口获得
-Youdu::sendToDept('dept1|dept2', new File($mediaId)); // $mediaId 通过 uploadFile 接口获得
+Youdu::message()->send('user1|user2', 'dept1|dept2',new Text('test'));
+Youdu::message()->sendToUser('user1|user2', new Image($mediaId)); // $mediaId 通过 uploadFile 接口获得
+Youdu::message()->sendToDept('dept1|dept2', new File($mediaId)); // $mediaId 通过 uploadFile 接口获得
 // ...
-~~~
+```
 
 ### Message types
 
@@ -75,16 +75,16 @@ Youdu::sendToDept('dept1|dept2', new File($mediaId)); // $mediaId 通过 uploadF
 
 ### Upload file
 
-~~~php
+```php
 use YouduPhp\LaravelYoudu\Facades\Youdu;
 
-Youdu::uploadFile($file, $fileType); // $fileType image代表图片、file代表普通文件、voice代表语音、video代表视频
-~~~
+Youdu::media()->upload($file, $fileType); // $fileType image代表图片、file代表普通文件、voice代表语音、video代表视频
+```
 
 ### Download file
 
-~~~php
+```php
 use YouduPhp\LaravelYoudu\Facades\Youdu;
 
-Youdu::downloadFile($mediaId, $savePath);
-~~~
+Youdu::media()->download($mediaId, $savePath);
+```
