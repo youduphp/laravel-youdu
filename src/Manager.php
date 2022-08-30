@@ -16,12 +16,7 @@ use YouduPhp\Youdu\Application;
 use YouduPhp\Youdu\Config;
 
 /**
- * @method static \YouduPhp\Youdu\Kernel\Dept\Client dept()
- * @method static \YouduPhp\Youdu\Kernel\Message\Client message()
- * @method static \YouduPhp\Youdu\Kernel\User\Client user()
- * @method static \YouduPhp\Youdu\Kernel\Session\Client session()
- * @method static \YouduPhp\Youdu\Kernel\Media\Client media()
- * @method static \YouduPhp\Youdu\Kernel\Group\Client group()
+ * @mixin Application
  */
 class Manager
 {

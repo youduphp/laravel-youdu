@@ -16,6 +16,12 @@ use YouduPhp\LaravelYoudu\Manager;
 /**
  * @mixin Manager
  * @method static \YouduPhp\Youdu\Application app(string $name = '')
+ * @method static \YouduPhp\Youdu\Kernel\Dept\Client dept()
+ * @method static \YouduPhp\Youdu\Kernel\Message\Client message()
+ * @method static \YouduPhp\Youdu\Kernel\User\Client user()
+ * @method static \YouduPhp\Youdu\Kernel\Session\Client session()
+ * @method static \YouduPhp\Youdu\Kernel\Media\Client media()
+ * @method static \YouduPhp\Youdu\Kernel\Group\Client group()
  */
 class Youdu extends Facade
 {
