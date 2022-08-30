@@ -1,6 +1,6 @@
 {
     "name": "youduphp/laravel-youdu",
-    "description": "youdu sdk for laravel",
+    "description": "The youdu component for laravel",
     "type": "library",
     "keywords": [
         "laravel",
@@ -14,7 +14,6 @@
     }],
     "require": {
         "php": ">=8.0",
-        "guzzlehttp/guzzle": "^6.4|^7.0",
         "illuminate/contracts": "^9.0",
         "illuminate/notifications": "^9.0",
         "illuminate/support": "^9.0",
@@ -36,7 +35,7 @@
         }
     },
     "scripts": {
-        "test": "@php vendor/bin/phpunit ./tests/BaseTest.php",
+        "test": "phpunit ./tests/BaseTest.php",
         "cs-fix": "php-cs-fixer fix $1",
         "analyse": "phpstan analyse --memory-limit 300M -l 0 -c phpstan.neon ./src ./config"
     },

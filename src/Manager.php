@@ -28,7 +28,7 @@ class Manager
     /**
      * @var Application[]
      */
-    protected $applications = [];
+    protected array $applications = [];
 
     public function __construct(protected array $config)
     {
@@ -56,7 +56,7 @@ class Manager
         $tmpPath = Arr::get($this->config, 'file_save_path', '/tmp');
 
         if (! isset($this->applications[$name])) {
-            if (! isset($this->config['applications'][$name])) {
+            if (! Arr::has($this->config, "applications.{$name}")) {
                 throw new Exception("config 'youdu.applications.{$name}' is undefined", 1);
             }
 

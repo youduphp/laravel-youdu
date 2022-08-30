@@ -30,6 +30,7 @@ class ExceptionListener
      * Handle the event.
      *
      * @param object $event
+     * @return true|void
      */
     public function handle(MessageLogged $event)
     {
@@ -70,12 +71,10 @@ class ExceptionListener
 
     /**
      * Assemble message.
-     * @param bool $runningInConsole
      * @throws BindingResolutionException
      * @throws UnitException
-     * @return string
      */
-    protected function assembleMessage(Throwable $e, $runningInConsole = false)
+    protected function assembleMessage(Throwable $e, bool $runningInConsole = false): string
     {
         return collect()
             ->put(__('youdu.environment'), config('app.env'))
@@ -96,9 +95,8 @@ $collection->put(__('youdu.usetime'), number_format(microtime(true) - LARAVEL_ST
     /**
      * Get git current branch name.
      * @throws BindingResolutionException
-     * @return string
      */
-    private function getCurrentBranch()
+    private function getCurrentBranch(): string
     {
         if (! config('youdu.exception.show_git_branch', false)) {
             return '';

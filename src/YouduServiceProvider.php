@@ -20,7 +20,7 @@ use YouduPhp\Youdu\Application;
 
 class YouduServiceProvider extends ServiceProvider implements DeferrableProvider
 {
-    public function boot()
+    public function boot(): void
     {
         if ($this->app->runningInConsole()) {
             $this->publishes([__DIR__ . '/../config' => $this->app->basePath('config')], 'config');
@@ -33,7 +33,7 @@ class YouduServiceProvider extends ServiceProvider implements DeferrableProvider
         }
     }
 
-    public function register()
+    public function register(): void
     {
         $this->mergeConfigFrom(__DIR__ . '/../config/youdu.php', 'youdu');
 
@@ -54,7 +54,7 @@ class YouduServiceProvider extends ServiceProvider implements DeferrableProvider
         $this->app['translator']->addJsonPath(__DIR__ . '/../resources/lang');
     }
 
-    public function provides()
+    public function provides(): array
     {
         return [Manager::class];
     }

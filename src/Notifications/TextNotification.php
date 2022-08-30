@@ -16,8 +16,6 @@ class TextNotification extends Notification
 {
     /**
      * Create a new notification instance.
-     *
-     * @param null|mixed $delay
      */
     public function __construct(string $message, string $app = 'default', ?int $delay = null)
     {

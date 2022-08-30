@@ -4,6 +4,7 @@
     "words": [
         "aggs",
         "agreen",
+        "analyse",
         "Arrayable",
         "buin",
         "Cacheable",
@@ -20,6 +21,7 @@
         "notifiables",
         "notificable",
         "postable",
+        "Queueable",
         "readed",
         "refreshable",
         "statu",
