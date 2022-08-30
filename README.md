@@ -54,8 +54,8 @@ Youdu::message()->sendToDept('dept1|dept2', 'test'); // send to dept
 use YouduPhp\LaravelYoudu\Facades\Youdu;
 
 Youdu::message()->send('user1|user2', 'dept1|dept2',new Text('test'));
-Youdu::message()->sendToUser('user1|user2', new Image($mediaId)); // $mediaId 通过 uploadFile 接口获得
-Youdu::message()->sendToDept('dept1|dept2', new File($mediaId)); // $mediaId 通过 uploadFile 接口获得
+Youdu::message()->sendToUser('user1|user2', new Image($mediaId)); // $mediaId 通过 Youdu::media()->upload() 接口获得
+Youdu::message()->sendToDept('dept1|dept2', new File($mediaId)); // $mediaId 通过 Youdu::media()->upload() 接口获得
 // ...
 ```
 
@@ -78,7 +78,7 @@ Youdu::message()->sendToDept('dept1|dept2', new File($mediaId)); // $mediaId 通
 ```php
 use YouduPhp\LaravelYoudu\Facades\Youdu;
 
-Youdu::media()->upload($file, $fileType); // $fileType image代表图片、file代表普通文件、voice代表语音、video代表视频
+$mediaId = Youdu::media()->upload($file, $fileType); // $fileType image代表图片、file代表普通文件、voice代表语音、video代表视频
 ```
 
 ### Download file
