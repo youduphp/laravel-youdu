@@ -4,14 +4,14 @@ on: [push]
 
 jobs:
   build:
-    runs-on: ${{ matrix.operating-system }}
+    runs-on: ${{ matrix.os }}
 
     strategy:
       max-parallel: 15
       matrix:
-        operating-system: [ubuntu-latest]
-        php-versions: ["8.0", "8.1", "8.2"]
-    name: PHP ${{ matrix.php-versions }} Test on ${{ matrix.operating-system }}
+        os: [ubuntu-latest]
+        php-version: ["8.0", "8.1", "8.2"]
+    name: PHP ${{ matrix.php-version }} Test on ${{ matrix.os }}
 
     steps:
       - name: Checkout
@@ -40,7 +40,7 @@ jobs:
 
       - name: Run Cs Fixer
         run: |
-          if [ "${{ matrix.php-versions }}" == "8.2" ]; then
+          if [ "${{ matrix.php-version }}" == "8.2" ]; then
             PHP_CS_FIXER_IGNORE_ENV=true ./vendor/bin/php-cs-fixer fix $1 --dry-run --diff --verbose --show-progress=dots
           else
             ./vendor/bin/php-cs-fixer fix $1 --dry-run --diff --verbose --show-progress=dots
