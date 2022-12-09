@@ -17,14 +17,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@master
 
-      - name: Install PHP
-        uses: shivammathur/setup-php@master
-
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
         with:
-          php-version: ${{ matrix.php-versions }}
-          extension-csv: mbstring, xdebug
-          ini-values-csv: "post_max_size=256M, short_open_tag=On"
-          coverage: xdebug
+          php-version: ${{ matrix.php-version }}
+          extensions: mbstring, redis, pdo, pdo_mysql, bcmath
+          tools: phpize
+          coverage: none
 
       - name: Check PHP Version
         run: php -v
@@ -35,11 +34,20 @@ jobs:
       - name: Check PHP Extensions
         run: php -m
 
-      # - uses: actions/checkout@v1
-
-      - name: Install dependencies
+      - name: Install Dependencies
         run: |
           composer install --dev
+
+      - name: Run Cs Fixer
+        run: |
+          if [ "${{ matrix.php-versions }}" == "8.2" ]; then
+            PHP_CS_FIXER_IGNORE_ENV=true ./vendor/bin/php-cs-fixer fix $1 --dry-run --diff --verbose --show-progress=dots
+          else
+            ./vendor/bin/php-cs-fixer fix $1 --dry-run --diff --verbose --show-progress=dots
+          fi
+
+      - name: Run PHPStan
+        run: vendor/bin/phpstan analyse --memory-limit 300M -l 0 -c phpstan.neon ./src ./publish
 
       - name: Test
         run: |
