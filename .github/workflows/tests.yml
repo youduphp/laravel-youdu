@@ -2,6 +2,9 @@ name: tests
 
 on: [push]
 
+env:
+  PHP_CS_FIXER_IGNORE_ENV: 1
+
 jobs:
   build:
     runs-on: ${{ matrix.os }}
@@ -9,8 +12,8 @@ jobs:
     strategy:
       max-parallel: 15
       matrix:
-        os: [ubuntu-latest]
-        php: ["8.1", "8.2"]
+        os: [ ubuntu-latest ]
+        php: [ "8.1", "8.2" ]
     name: PHP ${{ matrix.php }} Test on ${{ matrix.os }}
 
     steps:
@@ -35,21 +38,13 @@ jobs:
         run: php -m
 
       - name: Install Dependencies
-        run: |
-          composer install --dev
+        run: composer install --dev
 
       - name: Run Cs Fixer
-        run: |
-          if [ "${{ matrix.php }}" == "8.2" ]; then
-            PHP_CS_FIXER_IGNORE_ENV=true ./vendor/bin/php-cs-fixer fix $1 --dry-run --diff --verbose --show-progress=dots
-          else
-            ./vendor/bin/php-cs-fixer fix $1 --dry-run --diff --verbose --show-progress=dots
-          fi
+        run: php ./vendor/bin/php-cs-fixer fix $1 --dry-run --diff --verbose --show-progress=dots
 
       - name: Run PHPStan
-        run: vendor/bin/phpstan analyse --memory-limit 300M -l 0 -c phpstan.neon ./src ./config
+        run: php vendor/bin/phpstan analyse --memory-limit 300M -l 0 -c phpstan.neon ./src ./config
 
       - name: Run Test
-        run: |
-          composer test
-          # vendor/bin/phpunit
+        run: composer test
