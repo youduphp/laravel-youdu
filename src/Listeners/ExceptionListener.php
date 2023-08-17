@@ -8,6 +8,7 @@ declare(strict_types=1);
  * @document https://github.com/youduphp/laravel-youdu/blob/main/README.md
  * @contact  huangdijia@gmail.com
  */
+
 namespace YouduPhp\LaravelYoudu\Listeners;
 
 use Illuminate\Contracts\Container\BindingResolutionException;
