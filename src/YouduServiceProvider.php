@@ -11,13 +11,13 @@ declare(strict_types=1);
 
 namespace YouduPhp\LaravelYoudu;
 
-use GuzzleHttp\Client;
-use GuzzleHttp\ClientInterface;
 use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Notifications\ChannelManager;
 use Illuminate\Support\ServiceProvider;
 use YouduPhp\LaravelYoudu\Channels\YouduChannel;
 use YouduPhp\Youdu\Application;
+use YouduPhp\Youdu\Kernel\HttpClient\ClientFactory;
+use YouduPhp\Youdu\Kernel\HttpClient\ClientFactoryInterface;
 
 class YouduServiceProvider extends ServiceProvider implements DeferrableProvider
 {
@@ -41,13 +41,15 @@ class YouduServiceProvider extends ServiceProvider implements DeferrableProvider
         $this->app->bind(Manager::class, fn ($app) => new Manager(config('youdu')));
 
         $this->app->when(Application::class)
-            ->needs(ClientInterface::class)
+            ->needs(ClientFactoryInterface::class)
             ->give(function () {
-                new Client([
+                $clientFactory = new ClientFactory();
+                $clientFactory->setOptions([
                     'base_uri' => (string) config('youdu.api', ''),
                     'timeout' => (int) config('youdu.timeout', 5),
                     'headers' => config('youdu.http.headers', []),
                 ]);
+                return $clientFactory;
             });
 
         $this->app->make(ChannelManager::class)->extend('youdu', fn ($app) => $app->make(YouduChannel::class));

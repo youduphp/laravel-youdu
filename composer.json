@@ -17,7 +17,7 @@
         "illuminate/contracts": "^10.0",
         "illuminate/notifications": "^10.0",
         "illuminate/support": "^10.0",
-        "youduphp/youdu": "^1.0"
+        "youduphp/youdu": "^1.1.0"
     },
     "require-dev": {
         "huangdijia/php-coding-standard": "^1.1",
@@ -37,7 +37,7 @@
     "scripts": {
         "test": "@php vendor/bin/phpunit ./tests/BaseTest.php",
         "cs-fix": "@php vendor/bin/php-cs-fixer fix $1",
-        "analyse": "@php vendor/bin/phpstan analyse --memory-limit 300M -l 0 -c phpstan.neon ./src ./config"
+        "analyse": "@php vendor/bin/phpstan analyse --memory-limit 300M -l 0 -c phpstan.neon "
     },
     "extra": {
         "laravel": {
