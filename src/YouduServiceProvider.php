@@ -11,8 +11,6 @@ declare(strict_types=1);
 
 namespace YouduPhp\LaravelYoudu;
 
-use GuzzleHttp\Client;
-use GuzzleHttp\ClientInterface;
 use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Notifications\ChannelManager;
 use Illuminate\Support\ServiceProvider;
