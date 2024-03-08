@@ -21,7 +21,7 @@ jobs:
         exclude:
           - php: 8.1
             laravel: 11
-    name: PHP ${{ matrix.php }} Test on ${{ matrix.os }}
+    name: Test on PHP ${{ matrix.php }} - Laravel ${{ matrix.laravel }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
