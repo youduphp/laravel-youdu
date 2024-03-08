@@ -17,7 +17,7 @@ jobs:
       matrix:
         os: [ ubuntu-latest ]
         php: [ "8.3", "8.2", "8.1" ]
-    name: PHP ${{ matrix.php }} Test on ${{ matrix.os }}
+    name: Test on PHP ${{ matrix.php }} - Laravel ${{ matrix.laravel }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
