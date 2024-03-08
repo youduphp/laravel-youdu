@@ -44,6 +44,9 @@
             "providers": [
                 "YouduPhp\\LaravelYoudu\\YouduServiceProvider"
             ]
+        },
+        "branch-alias": {
+            "dev-main": "3.x-dev"
         }
     },
     "minimum-stability": "dev",
