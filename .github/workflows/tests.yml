@@ -10,20 +10,21 @@ env:
   PHP_CS_FIXER_IGNORE_ENV: 1
 
 jobs:
-  build:
+  tests:
     runs-on: ${{ matrix.os }}
-
     strategy:
-      max-parallel: 20
+      max-parallel: 32
       matrix:
         os: [ ubuntu-latest ]
-        php: [ "8.3", "8.2", "8.1" ]
+        php: [ "8.1", "8.2", "8.3" ]
+        laravel: [10, 11]
+        exclude:
+          - php: 8.1
+            laravel: 11
     name: PHP ${{ matrix.php }} Test on ${{ matrix.os }}
-
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
@@ -31,24 +32,17 @@ jobs:
           extensions: mbstring, redis, pdo, pdo_mysql, bcmath
           tools: phpize
           coverage: none
-
       - name: Check PHP Version
         run: php -v
-
       - name: Check Composer Version
         run: composer -V
-
       - name: Check PHP Extensions
         run: php -m
-
       - name: Install Dependencies
         run: composer install --dev
-
       - name: Run Cs Fixer
         run: php ./vendor/bin/php-cs-fixer fix $1 --dry-run --diff --verbose --show-progress=dots
-
       - name: Run PHPStan
         run: php vendor/bin/phpstan analyse --memory-limit 300M -l 0 -c phpstan.neon ./src ./config
-
       - name: Run Test
         run: composer test
