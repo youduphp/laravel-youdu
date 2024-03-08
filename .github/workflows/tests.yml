@@ -11,7 +11,7 @@ env:
 
 jobs:
   tests:
-    runs-on: Test on PHP ${{ matrix.php }} - Laravel ${{ matrix.laravel }}
+    runs-on: ${{ matrix.os }}
     strategy:
       max-parallel: 32
       matrix:
